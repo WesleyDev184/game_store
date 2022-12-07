@@ -1,8 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import CardItem from '../components/card'
 
-export default function Home() {
+export default function Home({list}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -12,7 +13,15 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-  
+        <ul className={'flex gap-4 flex-wrap justify-center my-10'}>
+          {list.map((item) => (
+            <>
+            <li key={item.slug}>
+            <CardItem name={item.name} background_image={item.background_image}/>
+            </li>
+            </>
+          ))}
+        </ul>
       </main>
 
       <footer className={styles.footer}>
@@ -29,4 +38,14 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export const getServerSideProps = async () => {
+  const res = await fetch(`http://localhost:3000/api/gameList`);
+  const json = await res.json();
+  return {
+    props: {
+      list: json.list
+    }
+  }
 }
