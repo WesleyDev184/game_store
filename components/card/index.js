@@ -2,6 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CardItem = ({ id, name, background_image, rating, tags }) => {
+
+  let rating_color = ''
+  if (rating < 4){
+    rating_color ='bg-yellow-600'
+  }else if(rating < 3){
+    rating_color ='bg-rose-600'
+  }else{
+    rating_color ='bg-green-500'
+  }
+
   return (
     <Link href={`/games/${id}`}>
       <>
@@ -19,7 +29,7 @@ const CardItem = ({ id, name, background_image, rating, tags }) => {
             <h5 class="text-xl font-bold tracking-tight text-white truncate">
               {name}
             </h5>
-            <span className="bg-green-500 ml-2 px-2 py-0.5 rounded-xl">
+            <span className={`${rating_color} ml-2 px-2 py-0.5 rounded-xl w-11 flex justify-center`}>
               {rating}
             </span>
           </div>
