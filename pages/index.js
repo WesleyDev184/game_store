@@ -1,9 +1,10 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import CardItem from '../components/card'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import CardItem from "../components/card";
+import { apiBase, apiKey } from "../lib/rawg";
 
-export default function Home({list}) {
+export default function Home({ list }) {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,12 +14,18 @@ export default function Home({list}) {
       </Head>
 
       <main className={styles.main}>
-        <ul className={'flex gap-4 flex-wrap justify-center my-10'}>
+        <ul className={"flex gap-4 flex-wrap justify-center my-10"}>
           {list.map((item) => (
             <>
-            <li key={item.slug}>
-            <CardItem name={item.name} background_image={item.background_image}/>
-            </li>
+              <li key={item.slug}>
+                <CardItem
+                  id={item.id}
+                  name={item.name}
+                  background_image={item.background_image}
+                  rating={item.rating}
+                  tags={item.tags}
+                />
+              </li>
             </>
           ))}
         </ul>
@@ -30,22 +37,22 @@ export default function Home({list}) {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`http://localhost:3000/api/gameList`);
+  const res = await fetch(`${apiBase}/games?key=${apiKey}&page_size=40`);
   const json = await res.json();
   return {
     props: {
-      list: json.list
-    }
-  }
-}
+      list: json.results,
+    },
+  };
+};
