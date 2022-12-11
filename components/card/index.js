@@ -7,7 +7,7 @@ const CardItem = ({ id, name, background_image, rating, tags }) => {
   if (rating < 4){
     rating_color ='bg-yellow-600'
   }else if(rating < 3){
-    rating_color ='bg-rose-600'
+    rating_color ='bg-rose-500'
   }else{
     rating_color ='bg-green-500'
   }
