@@ -48,7 +48,7 @@ export default function Home({ list }) {
 }
 
 export const getServerSideProps = async () => {
-  const res = await fetch(`${apiBase}/games?key=${apiKey}&page_size=40`);
+  const res = await fetch(`${apiBase}/games?key=${apiKey}&page_size=10`);
   const json = await res.json();
   return {
     props: {
