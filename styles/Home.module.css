@@ -13,7 +13,6 @@
 }
 .main {
   grid-area: 2 / 2 / 6 / 6;
-  overflow-y: hidden;
 }
 .navbar {
   grid-area: 1 / 2 / 2 / 6;

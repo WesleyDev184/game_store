@@ -22,7 +22,7 @@ export default function Home({ list }) {
           <SideBar/>
       </div>
 
-      <div className={styles.main}>
+      <div className={`${styles.main} overflow-y-scroll`}>
         <ul className={"flex gap-4 flex-wrap justify-center my-10"}>
           {list.map((item) => (
             <>
