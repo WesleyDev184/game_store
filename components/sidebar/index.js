@@ -5,7 +5,6 @@ import styles from "../../styles/SideBar.module.css";
 import CategoryRoundedIcon from "@mui/icons-material/CategoryRounded";
 import SearchRoundedIcon from "@mui/icons-material/SearchRounded";
 import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
-import getPageWidth from "../../utils/getPageWidth";
 
 const SideBar = () => {
   const menu = [
@@ -26,11 +25,9 @@ const SideBar = () => {
     },
   ];
 
-  const currentWidth = getPageWidth();
 
   return (
     <>
-      {currentWidth > 768 ? (
         <div className={`${styles.sideContainer} w-full h-full`}>
           <div className={`${styles.LogoContainer} pb-2`}>
             <div className={`flex items-center`}>
@@ -52,9 +49,6 @@ const SideBar = () => {
             ))}
           </div>
         </div>
-      ) : (
-        <'h1>text</h1>
-      )}
     </>
   );
 };
