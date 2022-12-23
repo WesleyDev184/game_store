@@ -1,12 +1,12 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
-import CardItem from "../components/card";
-import SideBar from "../components/sidebar";
-import { apiBase, apiKey } from "../lib/rawg";
-
+import Head from 'next/head';
+import logo from '../public/GameStoreLogo.png';
+import Image from 'next/image';
+import styles from '../styles/Home.module.css';
+import CardItem from '../components/card';
+import SideBar from '../components/sidebar';
+import { apiBase, apiKey } from '../lib/rawg';
 
 export default function Home({ list }) {
-  
   return (
     <div className={styles.container}>
       <Head>
@@ -15,16 +15,19 @@ export default function Home({ list }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className={styles.navbar}>
-
+      <div className={`${styles.navbar} flex ml-4`}>
+        <div className={`flex justify-center gap-4 items-center sm:hidden`}>
+          <Image src={logo} alt="Game Store Logo" width={50} height={50} />
+          <h5 className={`${styles.title} text-2xl`}>Game Store</h5>
+        </div>
       </div>
 
-      <div className={styles.sidebar}>
-          <SideBar/>
+      <div className={`${styles.sidebar}`}>
+        <SideBar />
       </div>
 
       <div className={`${styles.main} overflow-y-scroll`}>
-        <ul className={"flex gap-4 flex-wrap justify-center my-10"}>
+        {/* <ul className={"flex gap-4 flex-wrap justify-center my-10"}>
           {list.map((item) => (
             <>
               <li key={item.slug}>
@@ -38,7 +41,7 @@ export default function Home({ list }) {
               </li>
             </>
           ))}
-        </ul>
+        </ul> */}
       </div>
     </div>
   );

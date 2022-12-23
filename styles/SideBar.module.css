@@ -1,19 +1,14 @@
-.sideContainer{
-    background-color: #2d2d2d;
-    padding-top: 0.5rem;
-    padding-left: 1.5rem;
+.sideContainer {
+  background-color: #2d2d2d;
+  display: flex;
+  flex-direction: column;
+  row-gap: 5rem;
 }
 
-.LogoContainer{
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 3rem;
-    padding-right: 15px;
-}
-
-@media (max-width: 600px)
-{
-  
+.LogoContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
 }
