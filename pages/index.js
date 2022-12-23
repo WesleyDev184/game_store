@@ -6,6 +6,7 @@ import { apiBase, apiKey } from "../lib/rawg";
 
 
 export default function Home({ list }) {
+  
   return (
     <div className={styles.container}>
       <Head>

@@ -9,21 +9,11 @@
     width: 100%;
     justify-content: flex-start;
     align-items: center;
-    justify-content: space-between;
     margin-bottom: 3rem;
     padding-right: 15px;
 }
 
-.btn_menu{
-    display: none;
-}
-
 @media (max-width: 600px)
 {
-  .title{
-    display: none;
-  }
-  .btn_menu{
-    display: block;
-  }
+  
 }
