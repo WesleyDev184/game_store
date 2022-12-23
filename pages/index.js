@@ -16,13 +16,15 @@ export default function Home({ list }) {
       </Head>
 
       <div className={`${styles.navbar} flex ml-4`}>
-        <div className={`flex justify-center gap-4 items-center sm:hidden`}>
+        <div
+          className={`flex justify-center gap-4 items-center min-[650px]:hidden`}
+        >
           <Image src={logo} alt="Game Store Logo" width={50} height={50} />
           <h5 className={`${styles.title} text-2xl`}>Game Store</h5>
         </div>
       </div>
 
-      <div className={`${styles.sidebar}`}>
+      <div className={`${styles.sidebar} max-[650px]:hidden`}>
         <SideBar />
       </div>
 
