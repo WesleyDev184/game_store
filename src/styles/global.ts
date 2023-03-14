@@ -7,7 +7,7 @@ export default createGlobalStyle`
         box-sizing: border-box;
     }
     body{
-        background: #121214;
-        color: #e1e1e6;
+        background: ${props => props.theme.background.primary};
+        color: ${props => props.theme.colors.text.primary};
     }
 `

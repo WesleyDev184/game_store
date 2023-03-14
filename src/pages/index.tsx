@@ -1,6 +1,9 @@
 import Head from 'next/head'
+import { useTheme } from '@/contexts/ThemeProviderContext'
+import { Container } from '@/styles/pages/indexStyle'
 
 const Home = () => {
+    const { toggleTheme } = useTheme()
     return (
         <>
             <Head>
@@ -15,9 +18,10 @@ const Home = () => {
                 />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <main>
+            <Container>
                 <h1>Hello World</h1>
-            </main>
+                <button onClick={toggleTheme}>changeTheme</button>
+            </Container>
         </>
     )
 }
