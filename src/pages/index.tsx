@@ -1,9 +1,12 @@
 import Head from 'next/head'
 import { useTheme } from '@/contexts/ThemeProviderContext'
-import { Container } from '@/styles/pages/indexStyle'
+import { Container, SideBarDiv, ContentDiv } from '@/styles/pages/indexStyle'
+import SideBarComponent from '@/components/SideBar'
+import { useState } from 'react'
 
 const Home = () => {
     const { toggleTheme } = useTheme()
+
     return (
         <>
             <Head>
@@ -19,8 +22,13 @@ const Home = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Container>
-                <h1>Hello World</h1>
-                <button onClick={toggleTheme}>changeTheme</button>
+                <SideBarDiv>
+                    <SideBarComponent />
+                </SideBarDiv>
+                <ContentDiv>
+                    <h1>Hello world</h1>
+                    <button onClick={toggleTheme}>changeTheme</button>
+                </ContentDiv>
             </Container>
         </>
     )

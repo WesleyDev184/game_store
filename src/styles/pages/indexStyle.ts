@@ -4,6 +4,10 @@ export const Container = styled.main`
     height: 100vh;
     width: 100%;
     display: flex;
-    justify-content: start;
-    align-items: center;
 `
+
+export const SideBarDiv = styled.div`
+    width: auto;
+    margin-right: 10px;
+`
+export const ContentDiv = styled.div``
