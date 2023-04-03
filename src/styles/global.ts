@@ -12,6 +12,11 @@ export default createGlobalStyle`
 
         div{
             display: flex;
+
+            @midia (max-width: 720px){
+                flex-direction: column;
+            }
+
         }
     }
 `
