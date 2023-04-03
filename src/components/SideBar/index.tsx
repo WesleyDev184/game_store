@@ -1,21 +1,39 @@
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 import {
     ContainerSideBar,
     LogoContainer,
     MenuContainer,
-    MenuItem
+    MenuItem,
+    HandleThemeDiv,
+    HideSideBar
 } from './style'
-import { FiMenu } from 'react-icons/fi'
-import { GrClose } from 'react-icons/gr'
+import {
+    FaSun,
+    FaMoon,
+    FaArrowAltCircleLeft,
+    FaArrowAltCircleRight
+} from 'react-icons/fa'
 import SideBarMenu from './SideBarMenu'
 import { getScreenDimensions } from '../../utils/GetScreenDimensions'
 import Image from 'next/image'
 import Link from 'next/link'
 import Logo from '../../../public/Logo.png'
+import { useTheme } from '@/contexts/ThemeProviderContext'
+import MobileSideBar from './Mobile'
 
 const SideBarComponent = () => {
     const [isSideBarOpen, setIsSideBarOpen] = useState(true)
     const [pageWidth, setPageWidth] = useState(0)
+    const [isDarkMode, setIsDarkMode] = useState(false)
+
+    const { toggleTheme } = useTheme()
+    const router = useRouter()
+
+    const handleTheme = () => {
+        setIsDarkMode(!isDarkMode)
+        toggleTheme()
+    }
 
     const handleSideBar = () => {
         setIsSideBarOpen(!isSideBarOpen)
@@ -36,26 +54,40 @@ const SideBarComponent = () => {
                         <h2>Game Store</h2>
                     </LogoContainer>
                     <MenuContainer>
-                        {SideBarMenu.map(item => {
-                            return (
-                                <MenuItem
-                                    isSideBarOpen={isSideBarOpen}
-                                    key={item.title}
-                                >
-                                    <Link href={item.path}>
-                                        {item.icon}
-                                        <span>{item.title}</span>
-                                    </Link>
-                                </MenuItem>
-                            )
-                        })}
+                        <ul>
+                            {SideBarMenu.map(item => {
+                                return (
+                                    <MenuItem
+                                        activeRouter={
+                                            router.asPath === item.path
+                                        }
+                                        isSideBarOpen={isSideBarOpen}
+                                        key={item.title}
+                                    >
+                                        <Link href={item.path}>
+                                            {item.icon}
+                                            <span>{item.title}</span>
+                                        </Link>
+                                    </MenuItem>
+                                )
+                            })}
+                        </ul>
+                        <HandleThemeDiv onClick={handleTheme}>
+                            {isDarkMode ? <FaMoon /> : <FaSun />}
+                        </HandleThemeDiv>
                     </MenuContainer>
-                    <button onClick={handleSideBar}>
-                        {isSideBarOpen ? <GrClose /> : <FiMenu />}
-                    </button>
+                    <HideSideBar onClick={handleSideBar}>
+                        {isSideBarOpen ? (
+                            <span>
+                                Hide <FaArrowAltCircleLeft />
+                            </span>
+                        ) : (
+                            <FaArrowAltCircleRight size={25} />
+                        )}
+                    </HideSideBar>
                 </ContainerSideBar>
             ) : (
-                <h1>test</h1>
+                <MobileSideBar />
             )}
         </>
     )

@@ -1,7 +1,12 @@
-import styled, { keyframes } from 'styled-components'
+import styled, { css, keyframes } from 'styled-components'
 
 interface SideBarProps {
     isSideBarOpen: boolean
+}
+
+interface MenuItemProps {
+    isSideBarOpen: boolean
+    activeRouter: boolean
 }
 
 const toggleAnimation = keyframes`
@@ -13,7 +18,7 @@ const toggleAnimation = keyframes`
   }
 `
 
-export const ContainerSideBar = styled.div<SideBarProps>`
+export const ContainerSideBar = styled.nav<SideBarProps>`
     background-color: ${props => props.theme.background.secondary};
     width: ${props => (props.isSideBarOpen ? '200px' : '70px')};
     height: 100vh;
@@ -28,6 +33,26 @@ export const ContainerSideBar = styled.div<SideBarProps>`
         font-size: 20px;
     }
 `
+
+export const HideSideBar = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+
+    span {
+        font-size: 1.5em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            margin-left: 10px;
+        }
+    }
+`
+
 export const LogoContainer = styled.div<SideBarProps>`
     display: flex;
     align-items: center;
@@ -38,7 +63,7 @@ export const LogoContainer = styled.div<SideBarProps>`
 
     h2 {
         display: ${props => (props.isSideBarOpen ? 'block' : 'none')};
-        animation: ${toggleAnimation} 0.4s;
+        animation: ${toggleAnimation} 0.3s ease-in;
     }
 
     img {
@@ -50,7 +75,7 @@ export const LogoContainer = styled.div<SideBarProps>`
     }
 `
 
-export const MenuContainer = styled.ul`
+export const MenuContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,24 +84,72 @@ export const MenuContainer = styled.ul`
     padding: 20px 15px;
     width: 100%;
     height: 100%;
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 100%;
+    }
 `
 
-export const MenuItem = styled.li<SideBarProps>`
+export const HandleThemeDiv = styled.div`
     display: flex;
-    justify-content: start;
-    width: auto;
-    height: 50px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100px;
+    margin-top: 3em;
+
+    svg {
+        font-size: 2em;
+    }
+`
+
+export const MenuItem = styled.li<MenuItemProps>`
+    display: flex;
+    justify-content: ${props =>
+        props.isSideBarOpen ? 'flex-start' : 'center'};
+    width: 100%;
+    height: 60px;
     ${props => (props.isSideBarOpen ? 'padding-left:10%;' : 'margin: 0 auto;')};
+
+    ${({ activeRouter }) =>
+        activeRouter &&
+        css`
+            background: linear-gradient(
+                83.93deg,
+                #a100ed -6.08%,
+                #c300ff 67.34%,
+                rgba(58, 0, 255, 0) 158.91%
+            );
+            filter: drop-shadow(0px 4px 9px rgba(0, 0, 0, 0.25));
+            border-radius: 15px;
+            &:hover {
+                opacity: 0.8;
+            }
+        `}
+
+    ${({ activeRouter }) =>
+        !activeRouter &&
+        css`
+            &:hover {
+                opacity: 0.8;
+            }
+        `}
 
     a {
         display: flex;
         align-items: center;
         justify-content: center;
-        color: ${props => props.theme.colors.text.secondary};
+        color: ${props =>
+            props.activeRouter
+                ? props.theme.colors.text.reverse
+                : props.theme.colors.text.primary};
         text-decoration: none;
 
         &:hover {
-            color: ${props => props.theme.colors.text.primary};
+            color: ${props => props.theme.colors.text.secondary};
             transition: color 0.4s;
         }
 
@@ -88,7 +161,7 @@ export const MenuItem = styled.li<SideBarProps>`
         span {
             font-size: 1.5em;
             display: ${props => (props.isSideBarOpen ? 'block' : 'none')};
-            animation: ${toggleAnimation} 0.4s;
+            transition: 0.3s ease-in;
         }
     }
 `

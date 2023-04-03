@@ -10,6 +10,7 @@ export default {
             primary: '#121212',
             secondary: '#3c3c3c',
             tertiary: '#7f7f7f',
+            reverse: '#ffffff',
             error: '#ff4136',
             warning: '#ff851b'
         }

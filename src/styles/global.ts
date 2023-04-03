@@ -9,5 +9,9 @@ export default createGlobalStyle`
     body{
         background: ${props => props.theme.background.primary};
         color: ${props => props.theme.colors.text.primary};
+
+        div{
+            display: flex;
+        }
     }
 `
