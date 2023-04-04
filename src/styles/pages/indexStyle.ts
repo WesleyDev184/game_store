@@ -6,4 +6,8 @@ export const Container = styled.main`
     padding: 0 2rem;
 `
 
-export const ContentDiv = styled.div``
+export const ContentDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+`
