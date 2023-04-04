@@ -1,7 +1,12 @@
 import Head from 'next/head'
 import { Container, ContentDiv } from '@/styles/pages/indexStyle'
+import { IGames, Result } from '@/dtos/IGamesDtos'
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
+import Card from '@/components/Card'
 
-const Home = () => {
+const Home = ({
+    res
+}: InferGetServerSidePropsType<typeof getServerSideProps>) => {
     return (
         <>
             <Head>
@@ -19,6 +24,13 @@ const Home = () => {
             <Container>
                 <ContentDiv>
                     <h1>Hello world</h1>
+                    {res.results.map((item: Result) => (
+                        <Card
+                            key={item.id}
+                            name={item.name}
+                            imageUrl={item.background_image}
+                        />
+                    ))}
                 </ContentDiv>
             </Container>
         </>
@@ -26,3 +38,16 @@ const Home = () => {
 }
 
 export default Home
+
+export const getServerSideProps: GetServerSideProps = async () => {
+    let data = await fetch(
+        `${process.env.URL_BASE}/games?key=${process.env.API_KEY}&page_size=1`
+    )
+    let res: IGames = await data.json()
+
+    return {
+        props: {
+            res
+        }
+    }
+}
