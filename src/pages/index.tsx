@@ -23,12 +23,16 @@ const Home = ({
             </Head>
             <Container>
                 <ContentDiv>
-                    <h1>Hello world</h1>
-                    {res.results.map((item: Result) => (
+                    {res.results.map((r: Result) => (
                         <Card
-                            key={item.id}
-                            name={item.name}
-                            imageUrl={item.background_image}
+                            key={r.id}
+                            id={r.id}
+                            name={r.name}
+                            imageUrl={r.background_image}
+                            rating={r.rating}
+                            platforms={r.parent_platforms}
+                            genres={r.genres}
+                            released={r.released}
                         />
                     ))}
                 </ContentDiv>
@@ -41,7 +45,7 @@ export default Home
 
 export const getServerSideProps: GetServerSideProps = async () => {
     let data = await fetch(
-        `${process.env.URL_BASE}/games?key=${process.env.API_KEY}&page_size=1`
+        `${process.env.URL_BASE}/games?key=${process.env.API_KEY}&page_size=5`
     )
     let res: IGames = await data.json()
 
