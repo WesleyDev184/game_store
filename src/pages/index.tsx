@@ -44,10 +44,10 @@ const Home = ({
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    let data = await fetch(
+    const data = await fetch(
         `${process.env.URL_BASE}/games?key=${process.env.API_KEY}&page_size=5`
     )
-    let res: IGames = await data.json()
+    const res: IGames = await data.json()
 
     return {
         props: {

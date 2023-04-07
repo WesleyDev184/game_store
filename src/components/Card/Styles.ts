@@ -67,7 +67,6 @@ export const CardBody = styled.div<CardProps>`
     }
 
     .content {
-        padding: 0px 20px;
         height: 0;
         opacity: 0;
         transition: all 0.5s;
@@ -110,8 +109,8 @@ export const CardBody = styled.div<CardProps>`
                     gap: 0.4em;
                     width: 100%;
                     font-size: 17px;
-                    justify-content: start;
                     margin: 0.3em 0;
+                    justify-content: start;
                 }
 
                 .info {
